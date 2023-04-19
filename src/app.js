@@ -1,8 +1,8 @@
 require('express-async-errors');
 const express = require('express');
 const errorHandler = require('./middlewares/errorHandler');
-const { loginAuthorization } = require('./controllers/login.controller');
-const { validateLogin } = require('./middlewares/validateLogin');
+const { loginAuthorization, createUser } = require('./controllers');
+const { validateLogin, validateUser } = require('./middlewares');
 
 const app = express();
 
@@ -13,7 +13,9 @@ app.get('/', (_request, response) => {
 
 app.use(express.json());
 
-app.post('/login', validateLogin, loginAuthorization);
+app.post('/login', validateLogin.validateLogin, loginAuthorization);
+
+app.post('/user', validateUser.validateUser, createUser);
 
 app.use(errorHandler);
 
