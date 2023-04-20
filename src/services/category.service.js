@@ -5,6 +5,12 @@ const createCategory = (name) => {
   return category;
 };
 
+const getAll = () => {
+  const categories = Category.findAll();
+  return categories;
+};
+
 module.exports = {
   createCategory,
+  getAll,
 };
