@@ -1,8 +1,8 @@
 require('express-async-errors');
 const express = require('express');
 const errorHandler = require('./middlewares/errorHandler');
-const { loginControllers, userControllers } = require('./controllers');
-const { validateLogin, validateUser, validateToken } = require('./middlewares');
+const { loginControllers, userControllers, categoryControllers } = require('./controllers');
+const { validateLogin, validateUser, validateToken, validateCategory } = require('./middlewares');
 
 const app = express();
 
@@ -20,6 +20,8 @@ app.post('/user', validateUser.validateUser, userControllers.createUser);
 app.get('/user', validateToken, userControllers.getAll);
 
 app.get('/user/:id', validateToken, validateUser.validateUserById, userControllers.getById);
+
+app.post('/categories', validateToken, validateCategory, categoryControllers.createCategory);
 
 app.use(errorHandler);
 
