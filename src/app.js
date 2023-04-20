@@ -15,9 +15,11 @@ app.use(express.json());
 
 app.post('/login', validateLogin, loginControllers.loginAuthorization);
 
-app.post('/user', validateUser, userControllers.createUser);
+app.post('/user', validateUser.validateUser, userControllers.createUser);
 
 app.get('/user', validateToken, userControllers.getAll);
+
+app.get('/user/:id', validateToken, validateUser.validateUserById, userControllers.getById);
 
 app.use(errorHandler);
 

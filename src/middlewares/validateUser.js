@@ -21,4 +21,16 @@ const validateUser = async (req, _res, next) => {
   next();
 };
 
-module.exports = validateUser;
+const validateUserById = async (req, _res, next) => {
+  const { id } = req.params;
+  const user = await User.findByPk(id);
+  if (!user) {
+    throw httpErrGenerator(404, 'User does not exist');
+  }
+  next();
+};
+
+module.exports = {
+  validateUser,
+  validateUserById,
+};

@@ -10,7 +10,15 @@ const getAll = () => {
   return users;
 };
 
+const getById = (id) => {
+  const user = User.findByPk(id, {
+    attributes: { exclude: ['password'] },
+  });
+  return user;
+};
+
 module.exports = {
   createUser,
   getAll,
+  getById,
 };
