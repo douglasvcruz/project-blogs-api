@@ -21,6 +21,4 @@ const validateUser = async (req, _res, next) => {
   next();
 };
 
-module.exports = {
-  validateUser,
-};
+module.exports = validateUser;

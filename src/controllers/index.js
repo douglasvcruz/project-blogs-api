@@ -1,7 +1,7 @@
-const { loginAuthorization } = require('./login.controller');
-const { createUser } = require('./user.controller');
+const loginControllers = require('./login.controller');
+const userControllers = require('./user.controller');
 
 module.exports = {
-  loginAuthorization,
-  createUser,
+  loginControllers,
+  userControllers,
 };

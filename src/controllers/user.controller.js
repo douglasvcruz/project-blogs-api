@@ -1,4 +1,4 @@
-const userServices = require('../services');
+const { userServices } = require('../services');
 const { generateToken } = require('../utils/auth');
 
 const createUser = async (req, res, next) => {
@@ -13,6 +13,16 @@ const createUser = async (req, res, next) => {
   }
 };
 
+const getAll = async (req, res, next) => {
+  try {
+    const users = await userServices.getAll();
+    res.status(200).json(users);
+  } catch (e) {
+    next(e);
+  }
+};
+
 module.exports = {
   createUser,
+  getAll,
 };
